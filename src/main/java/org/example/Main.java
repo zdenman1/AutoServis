@@ -1,28 +1,31 @@
 package org.example;
 
-import org.example.auto.Auto;
-import org.example.auto.AutoRepository;
-import org.example.auto.MemoryAutoRepository;
+import org.example.car.CarRepository;
+import org.example.car.InMemoryCarRepository;
+import org.example.order.InMemoryOrderRepository;
+import org.example.order.OrderRepository;
+
+import javax.swing.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
 
+		CarRepository carRepository = new InMemoryCarRepository();
+		OrderRepository orderRepository = new InMemoryOrderRepository();
 
-        AutoRepository autoRepository = new MemoryAutoRepository();
-
-        System.out.println(autoRepository.getAll());
-
-
+		System.out.println(carRepository.getAll());
 
 
-        Obraz obraz = new Obraz(autoRepository);
-        obraz.createMenuBar();
-        obraz.createKancelarFrame();
-        obraz.createGarazFrame();
+//		Obraz obraz = new Obraz(carRepository);
+//		obraz.createMenuBar();
+//		obraz.createKancelarFrame();
+//		obraz.createGarazFrame();
 
+		AppFrame appFrame = new AppFrame(orderRepository);
+		appFrame.pack();
+		appFrame.setVisible(true);
 
-
-    }
+	}
 }

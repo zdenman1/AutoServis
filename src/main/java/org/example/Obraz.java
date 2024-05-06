@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.auto.AutoRepository;
+import org.example.car.CarRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,80 +9,76 @@ import java.awt.event.ActionListener;
 
 public class Obraz {
 
-    private AutoRepository autoRepository;
+	private CarRepository carRepository;
 
-    public Obraz(AutoRepository autoRepository) {
-        this.autoRepository = autoRepository;
-    }
+	public Obraz(CarRepository carRepository) {
+		this.carRepository = carRepository;
+	}
 
-    JMenuBar menuBar = new JMenuBar();
-    CardLayout cardLayout = new CardLayout();
-    JFrame frame = new JFrame();
+	JMenuBar menuBar = new JMenuBar();
+	CardLayout cardLayout = new CardLayout();
+	JFrame frame = new JFrame();
 
-    public void setMenuBar(JMenuBar menuBar) {
-        this.menuBar = menuBar;
-    }
+	public void setMenuBar(JMenuBar menuBar) {
+		this.menuBar = menuBar;
+	}
 
-    public void createMenuBar() {
+	public void createMenuBar() {
 
-        JMenu kancelarMenu = new JMenu("Kancelar");
-        JMenu garazMenu = new JMenu("Garáž");
+		JMenu officeMenu = new JMenu("Kancelář");
+		JMenu garageMenu = new JMenu("Garáž");
 
-        JMenuItem zapisItem = new JMenuItem("Zadat nové auto");
-        JMenuItem hotovoItem = new JMenuItem("Auta k předání");
+		JMenuItem zapisItem = new JMenuItem("Zadat nové auto");
+		JMenuItem hotovoItem = new JMenuItem("Auta k předání");
 
-        JMenuItem garazItem = new JMenuItem("Otevřít garáž");
+		JMenuItem garazItem = new JMenuItem("Otevřít garáž");
 
-        zapisItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(frame.getContentPane(), "zapisPanel");
-            }
-        });
+		zapisItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(frame.getContentPane(), "zapisPanel");
+			}
+		});
 
-        hotovoItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(frame.getContentPane(), "hotovoPanel");
-            }
-        });
+		hotovoItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(frame.getContentPane(), "hotovoPanel");
+			}
+		});
 
-        garazItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(frame.getContentPane(), "garazPanel");
-            }
-        });
+		garazItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(frame.getContentPane(), "garazPanel");
+			}
+		});
 
-        kancelarMenu.add(zapisItem);
-        kancelarMenu.add(hotovoItem);
-        garazMenu.add(garazItem);
+		officeMenu.add(zapisItem);
+		officeMenu.add(hotovoItem);
+		garageMenu.add(garazItem);
 
-        menuBar.add(kancelarMenu);
-        menuBar.add(garazMenu);
+		menuBar.add(officeMenu);
+		menuBar.add(garageMenu);
 
+		JLabel label = new JLabel("Vítejte v systému autoservis Jarda z Vomáčkova.", SwingConstants.CENTER);
+		label.setFont(new Font("Serif", Font.BOLD, 40));
 
-        JLabel label = new JLabel("Vítejte v systému autoservis Jarda z Vomáčkova.", SwingConstants.CENTER);
-        label.setFont(new Font("Serif", Font.BOLD, 40));
+		frame.setJMenuBar(menuBar);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(cardLayout);
+		frame.add(label, BorderLayout.CENTER);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setVisible(true);
+	}
 
+	public void createKancelarFrame() {
+		Zapis zapis = new Zapis(this.carRepository);
+		frame.add(zapis.zapisGUI(), "zapisPanel");
+	}
 
-        frame.setJMenuBar(menuBar);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(cardLayout);
-        frame.add(label,BorderLayout.CENTER);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setVisible(true);
-
-
-    }
-
-    public void createKancelarFrame() {
-        Zapis zapis = new Zapis(this.autoRepository);
-        frame.add(zapis.zapisGUI(), "zapisPanel");
-    }
-
-    public void createGarazFrame() {
-        Garaz garaz = new Garaz(this.autoRepository);
-        frame.add(garaz.GarauFrame(), "garazPanel");
-    }
+	public void createGarazFrame() {
+		Garaz garaz = new Garaz(this.carRepository);
+		frame.add(garaz.GarauFrame(), "garazPanel");
+	}
 }
