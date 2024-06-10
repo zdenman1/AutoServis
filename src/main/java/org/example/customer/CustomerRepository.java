@@ -1,10 +1,9 @@
 package org.example.customer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CustomerRepository {
-
-	ArrayList<Customer> getAll();
+	List<Customer> getAll();
 
 	void create(Customer customer);
 }

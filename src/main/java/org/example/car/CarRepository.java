@@ -1,12 +1,10 @@
 package org.example.car;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CarRepository {
-
-	ArrayList<Car> getAll();
+	List<Car> getAll();
 
 	void create(Car car);
-
 }
