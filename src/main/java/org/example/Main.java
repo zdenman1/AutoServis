@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.car.CarCreateParams;
 import org.example.car.CarRepository;
 import org.example.car.CarService;
 import org.example.car.InMemoryCarRepository;
@@ -21,6 +22,27 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		RepairShop repairShop = getRepairShop();
+
+		// Example of creating a car
+		CarCreateParams createParams = new CarCreateParams("BMW", "X5", 2020, "ABC123", "1234567890");
+		repairShop.car().create(createParams);
+
+		System.out.println(repairShop.car().getAll());
+
+
+//		AppFrame appFrame = new AppFrame(orderRepository);
+//		appFrame.pack();
+//		appFrame.setVisible(true);
+
+	}
+
+	/**
+	 * This method creates a RepairShop object with all the dependencies
+	 *
+	 * @return RepairShop object
+	 */
+	private static RepairShop getRepairShop() {
 		CarRepository carRepository = new InMemoryCarRepository();
 		OrderRepository orderRepository = new InMemoryOrderRepository();
 		CustomerRepository customerRepository = new InMemoryCustomerRepository();
@@ -33,25 +55,6 @@ public class Main {
 		MechanicService mechanicService = new MechanicService(mechanicRepository);
 		CarService carService = new CarService(carRepository);
 
-		RepairShop repairShop = new RepairShop(
-				customerService,
-				carService,
-				invoiceService,
-				mechanicService,
-				orderService
-		);
-
-		System.out.println(carRepository.getAll());
-
-
-//		Obraz obraz = new Obraz(carRepository);
-//		obraz.createMenuBar();
-//		obraz.createKancelarFrame();
-//		obraz.createGarazFrame();
-
-		AppFrame appFrame = new AppFrame(orderRepository);
-		appFrame.pack();
-		appFrame.setVisible(true);
-
+		return new RepairShop(customerService, carService, invoiceService, mechanicService, orderService);
 	}
 }
