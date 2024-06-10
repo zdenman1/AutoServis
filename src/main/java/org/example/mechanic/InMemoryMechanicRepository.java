@@ -13,7 +13,7 @@ public class InMemoryMechanicRepository implements MechanicRepository {
 
 	@Override
 	public List<Mechanic> getAll() {
-		return mechanicList;
+		return this.mechanicList;
 	}
 
 	@Override

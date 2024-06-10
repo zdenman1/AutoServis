@@ -2,9 +2,8 @@ package org.example;
 
 import org.example.car.Car;
 import org.example.car.CarRepository;
-import org.example.customer.MemoryCustomerRepository;
 import org.example.customer.Customer;
-
+import org.example.customer.InMemoryCustomerRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,19 +13,19 @@ public class Zapis {
 
 	private final CarRepository carRepository;
 	private final AutoTableModel autoTableModel;
-	private final MemoryCustomerRepository zakaznikRepository;
+	private final InMemoryCustomerRepository zakaznikRepository;
 	private JComboBox<Customer> zakaznikComboBox;
 	private Garaz garaz;
 
 	public Zapis(CarRepository carRepository) {
 		this.carRepository = carRepository;
 		this.autoTableModel = new AutoTableModel();
-		this.zakaznikRepository = new MemoryCustomerRepository();
+		this.zakaznikRepository = new InMemoryCustomerRepository();
 		this.zakaznikComboBox = new JComboBox<>();
 		this.garaz = new Garaz(carRepository);
 	}
 
-	public Zapis(CarRepository carRepository, MemoryCustomerRepository zakaznikRepository) {
+	public Zapis(CarRepository carRepository, InMemoryCustomerRepository zakaznikRepository) {
 		this.carRepository = carRepository;
 		this.zakaznikRepository = zakaznikRepository;
 		// inicializace atributů třídy
@@ -145,7 +144,7 @@ public class Zapis {
 		});
 
 		zapisPanel.add(zakaznikComboBox);
-		MemoryCustomerRepository zakaznikRepository = new MemoryCustomerRepository();
+		InMemoryCustomerRepository zakaznikRepository = new InMemoryCustomerRepository();
 
 
 		ulozit.add(ulozitB);

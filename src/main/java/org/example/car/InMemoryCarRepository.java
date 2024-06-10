@@ -1,16 +1,17 @@
 package org.example.car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InMemoryCarRepository implements CarRepository {
-	private final ArrayList<Car> carList;
+	private final List<Car> carList;
 
 	public InMemoryCarRepository() {
 		this.carList = new ArrayList<>();
 	}
 
 	@Override
-	public ArrayList<Car> getAll() {
+	public List<Car> getAll() {
 		return this.carList;
 	}
 
