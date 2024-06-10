@@ -9,15 +9,14 @@ import java.awt.event.ActionListener;
 
 public class Obraz {
 
+	JMenuBar menuBar = new JMenuBar();
+	CardLayout cardLayout = new CardLayout();
+	JFrame frame = new JFrame();
 	private CarRepository carRepository;
 
 	public Obraz(CarRepository carRepository) {
 		this.carRepository = carRepository;
 	}
-
-	JMenuBar menuBar = new JMenuBar();
-	CardLayout cardLayout = new CardLayout();
-	JFrame frame = new JFrame();
 
 	public void setMenuBar(JMenuBar menuBar) {
 		this.menuBar = menuBar;

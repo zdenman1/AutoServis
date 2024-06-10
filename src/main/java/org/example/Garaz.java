@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.car.Car;
-import org.example.car.CarRepository; // Import AutoRepository
+import org.example.car.CarRepository;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

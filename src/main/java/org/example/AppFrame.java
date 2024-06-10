@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.car.CarRepository;
-import org.example.order.Order;
 import org.example.order.OrderPanel;
 import org.example.order.OrderRepository;
 

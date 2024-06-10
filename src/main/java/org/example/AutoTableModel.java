@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutoTableModel extends AbstractTableModel {
-	private List<Car> auta;
 	private final String[] columnNames = {"Název", "Značka", "Model", "Rok", "Závada", "SPZ"};
+	private List<Car> auta;
 
 	public AutoTableModel() {
 		this.auta = new ArrayList<>();
